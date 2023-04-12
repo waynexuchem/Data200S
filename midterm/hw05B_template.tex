@@ -1,0 +1,320 @@
+% DS100: Search for YOUR ANSWER HERE in this LaTeX document. Then (if using Overleaf) press "Recompile" or Ctrl/Cmd+S.
+% To download a file, select the download button next to "Recompile"
+% http://mirrors.concertpass.com/tex-archive/macros/latex/contrib/exam/examdoc.pdf
+
+\documentclass[addpoints, 12pt]{exam}
+
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{bbm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+\usepackage{multicol}
+
+\lstset{language=python, basicstyle=\ttfamily}
+\newcommand{\closedinterval}[2]{\left[#1, #2\right]}
+\setlength{\columnsep}{1cm}
+\setlength{\parskip}{1em}
+\usepackage{xcolor,framed}
+
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem*{answer}{Answer}
+
+% Header
+\newcommand{\lecture}[4]{
+    \def \printtitle {
+    \ifprintanswers
+    #1~Solutions
+    \else
+    #1
+    \fi
+    }
+	\pagestyle{myheadings}
+	\thispagestyle{plain}
+	\newpage
+	\setcounter{page}{1}
+	\noindent
+	\begin{center}
+		\framebox{
+			\vbox{\vspace{2mm}
+				\hbox to 6.28in { {\bf Data 100, Spring 2023
+						\hfill #4} }
+				\vspace{6mm}
+				\hbox to 6.28in { {\Large \hfill \printtitle{}  \hfill}  }
+				\vspace{6mm}
+				\hbox to 6.28in { {\it  #2 \hfill #3} }
+				\vspace{2mm}}
+		}
+	\end{center}
+	\markboth{#1}{#1}
+	%\vspace*{-2mm}
+}
+\begin{document}
+\definecolor{shadecolor}{gray}{0.95}
+
+
+\newcommand{\homework}{5B}
+\newcommand{\duedate}{Thursday, February 23th at 11:59 PM Pacific}
+\lecture{Homework \#\homework{}}{}{Due Date: \duedate{}}{}
+
+%\vspace{-1em}
+
+\noindent\textbf{Total Points: 24}
+
+\fullwidth{\section*{Submission Instructions}}
+\noindent You must submit this assignment to Gradescope by 
+the on-time deadline, \textbf{\duedate{}}. Please read the syllabus for \textbf{the grace period policy}. No late submissions beyond the grace period will be accepted. While course staff is happy to help you if you encounter difficulties with submission, we may not be able to respond to last-minute requests for assistance (TAs need to sleep, after all!). \textbf{We strongly encourage you to plan to submit your work to Gradescope several hours before the stated deadline.} This way, you will have ample time to reach out to staff for submission support. \\
+
+\noindent There are two parts to this assignment listed on Gradescope:
+\begin{itemize}
+\item \textbf{Homework 05 Coding}: Submit your Jupyter notebook zip file for Homework 5A, which can be generated and downloaded from DataHub by using the \texttt{grader.export()} cell provided.
+\item \textbf{Homework 05 Written}: Submit a single PDF to Gradescope that contains both (1) your answers to all manually graded questions from the Homework 5A Jupyter Notebook, and (2) your answers to all questions in this Homework 5B document.  
+\end{itemize}
+
+\noindent  To receive credit on this assignment, \textbf{you must submit both your coding and written portions to their respective Gradescope portals}. Your written submission (a single PDF) can be generated as follows:
+\begin{enumerate}
+    \item Access your answers to manually graded Homework 5A  questions in one of three ways:
+    \begin{itemize}
+        \item \textit{Automatically create PDF (recommended)}: We have provided a cell to generate your written response in the Homework 1A notebook for you. Run the cell and click to download the generated PDF. This function will extract your response to the manually-graded questions and put them on separate pages. This process may fail if your answer is not properly formatted; if this is the case, check out common errors and solutions described on Ed or follow either of the two ways described below.
+        \item \textit{Manually download PDF}: If there are issues with automatically generating the PDF, on DataHub, you can try downloading the PDF by clicking on \path{File -> Save and Export Notebook As... -> PDF}. If you choose to go this route, you must take special care to ensure all appropriate pages are chosen for each question on Gradescope.
+        \item \textit{Take screenshots}: If that doesn't work either, you can take screenshots of your answers (and your code if present) to manually-graded questions and include them as images in a PDF. The manually-graded questions are listed at the top of the Homework 1A notebook.
+    \end{itemize}
+    
+    \item Answer the below Homework 1B written questions in one of many ways:
+    \begin{itemize}
+        \item You can type your answers. We recommend LaTeX, the math typesetting language. Overleaf is a great tool to type in LaTeX.
+        \item Download this PDF, print it out and write directly on these pages. If you have a tablet, you may save this PDF and write directly on it.
+        \item Write your answers on a blank sheet of physical or digital paper.
+        \item Note: If you write your answers on physical paper, use a scanning application (e.g., CamScanner, Apple Notes) to generate a PDF.
+    \end{itemize}
+    
+    \item Combine these two sets of answers together into one PDF document and submit it to the appropriate Gradescope written portal. You can use PDF merging tools, e.g., Adobe Reader, Smallpdf (\url{https://smallpdf.com/merge-pdf}) or Apple Preview (\url{https://support.apple.com/en-us/HT202945}).
+
+    \item \textbf{Important}: When submitting on Gradescope, you \textbf{must tag pages to each question correctly} (it prompts you to do this after submitting your work). This significantly streamlines the grading process for our readers. Failure to do this may result in a score of 0 for untagged questions.
+\end{enumerate}
+
+\noindent \textit{You are responsible for ensuring your submission follows our requirements. We will not be granting regrade requests nor extensions to submissions that don't follow instructions.} If you encounter any difficulties with submission, please don't hesitate to reach out to staff prior to the deadline.
+
+
+\fullwidth{\section*{Collaborators}}
+\noindent Data science is a collaborative activity. While you may talk with others about the homework, we ask that you write your solutions individually. If you do discuss the assignments with others, please include their names at the top of your submission.
+
+
+\newpage
+
+\begin{questions}
+
+\fullwidth{\section*{Properties of Linear Regression Residuals}}
+
+\vspace{-1em}
+
+\question[10] In the lecture, we spent a great deal of time talking about  simple linear regression, which you also saw in Data 8. To briefly summarize, the simple linear regression model assumes that given a single observation $x$, our predicted response for this observation is $\hat{y} = \theta_0 + \theta_1x$. 
+
+In Lecture 10 we saw that the $\theta_0 = \hat{\theta}_0$ and $\theta_1 = \hat{\theta}_1$ that minimize the average $L_2$ loss for the simple linear regression model are:
+
+$$\hat{\theta}_0 = \bar{y} - \hat{\theta}_1\bar{x} $$
+$$\hat{\theta_1} = r\frac{\sigma_y}{\sigma_x}$$
+
+Or, rearranging terms, our predictions $\hat{y}$ are:
+
+$$\hat{y} = \bar{y} + r \sigma_y \frac{x - \bar{x}}{\sigma_x}$$
+
+\begin{parts}
+\part[3] As we saw in the lecture, a residual $e_i$, for data point $i\in \{1, \ldots, n\}$, is defined to be the difference between a true response $y_i$ and predicted response $\hat{y_i}$. Specifically, $e_i = y_i - \hat{y_i}$. Note that there are $n$ data points, and each data point is denoted by $(x_i, y_i)$.
+
+Prove, using the equation for $\hat{y}$ above, that $\sum_{i = 1}^n e_i$ = 0.
+
+   \begin{shaded}
+    \begin{answer}
+
+% YOUR ANSWER HERE %
+
+    \end{answer}
+    \end{shaded}
+
+\part[2] Prove that $\bar{y} = \bar{\hat{y}}$. You may use your result from part (a).
+
+   \begin{shaded}
+    \begin{answer}
+
+% YOUR ANSWER HERE %
+
+    \end{answer}
+    \end{shaded}
+
+\part[2] Show that $(\bar{x}, \bar{y})$ is on the simple linear regression line.
+   \begin{shaded}
+    \begin{answer}
+
+% YOUR ANSWER HERE %
+
+    \end{answer}
+    \end{shaded}
+
+
+\part[3] Show that the residuals are uncorrelated with the predictor variable, that is
+\[
+\frac{1}{n} \sum_{i=1}^n \left(\frac{e_i - \bar{e}}{\sigma_e}\right)\left(\frac{x_i - \bar{x}}{\sigma_x}\right) = 0,
+\]
+where $\bar{e} = \frac{1}{n}\sum_{i=1}^n e_i$, $\sigma_e^2 = \frac{1}{n}\sum_{i=1}^n (e_i - \bar{e})^2$, and $\sigma_x^2 = \frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^2$. You may assume that $\sigma_e$, $\sigma_x$, and at least one residual are not exactly zero. Use the properties of estimating equations derived in lecture.
+
+   \begin{shaded}
+    \begin{answer}
+
+% YOUR ANSWER HERE %
+
+    \end{answer}
+    \end{shaded}
+    
+\end{parts}
+
+
+
+\newpage
+
+\fullwidth{\section*{Properties of a Linear Model With No Constant Term}}
+\question[4] Suppose that we don't include an intercept term in
+our model. That is, our model is now
+$$\hat{y} = \theta x,$$
+where $\theta$ is the single parameter for our model that we need to optimize. (In this equation, $x$ is a scalar, corresponding to a single observation.)
+
+\noindent As usual, we are looking to find the value $\hat{\theta}$ that minimizes the average $L_2$ loss (mean squared error) across our observed data $\{(x_i, y_i)\}, for\ i\in \{1, \ldots, n\}$:
+
+$$R(\theta) = \frac{1}{n}\sum_{i=1}^n (y_i - \theta x_i)^2$$
+
+\noindent The normal equations derived in the lecture no longer hold. In this problem, we'll derive a solution to this simpler model. We'll see that the least squares estimate of the slope in this model differs from the simple linear regression model, and will also explore whether or not our properties from the previous problem still hold.
+
+
+Use calculus to find the minimizing $\hat{\theta}$. 
+
+That is, you may prove that: 
+$$ \hat{\theta} = \frac{\sum x_iy_i}{\sum x_i^2}$$
+
+Hint: You may start by following the format of SLR in lecture 10 and replace the SLR model with the model defined above. 
+
+   \begin{shaded}
+    \begin{answer}
+
+% YOUR ANSWER HERE %
+
+    \end{answer}
+    \end{shaded}
+
+
+
+\newpage
+
+\fullwidth{\section*{MSE ``Minimizer''}}
+\question[10]Recall from calculus that given some function $g(x)$, the $x$ you get from solving $\frac{d g(x)}{dx} = 0$ is called a \textit{critical point}
+of $g$ -- this means it could be a minimizer or a maximizer for $g$. In this question, we will explore some basic properties and 
+build some intuition on why, for certain loss functions such as squared $L_2$ loss, the critical point of the empirical risk function (defined as an average loss on the observed data) will always be the minimizer.
+
+Given some linear model $f(x) = \theta x$ for some real scalar $\theta$, we can write the empirical risk of the model $f$ given the observed data $\{x_i, y_i\}, \ for \ i\in \{ 1, \dots, n\}$ as the average $L_2$ loss, also known as Mean Squared Error (MSE):
+\begin{equation*}
+    \frac{1}{n}\sum_{i=1}^n (y_i - \theta x_i)^2 = \sum_{i=1}^n \frac{1}{n}(y_i - \theta x_i)^2
+\end{equation*}
+
+\begin{parts}
+
+\part[3] Let's investigate one of the $n$ functions in the summation in the MSE. 
+Define $g_i(\theta) = \frac{1}{n}(y_i - \theta x_i)^2$ for $i \in \{1, \dots, n\}$. In this case, note that the MSE can be written as $\sum_{i=1}^{n} g_i(\theta)$.
+
+Recall from calculus that we can use
+the 2nd derivative of a function to describe its curvature about a certain point (if it is facing concave up, down, or possibly a point of inflection). 
+You can take the following as a fact: A function is convex if and only if the function's 2nd derivative is non-negative on its domain.
+Based on this property, verify that $g_i(\theta)$ is a \textbf{convex function}.
+
+   \begin{shaded}
+    \begin{answer}
+
+% YOUR ANSWER HERE %
+
+    \end{answer}
+    \end{shaded}
+
+\part[2] Briefly explain intuitively in words why given a
+convex function $g(\theta)$, the critical point we get by solving $\frac{dg(\theta)}{d\theta} = 0$ minimizes $g$. You can assume that $\frac{dg(\theta)}{d\theta}$ is a function of $\theta$ (and not a constant).
+
+   \begin{shaded}
+    \begin{answer}
+
+% YOUR ANSWER HERE %
+
+    \end{answer}
+    \end{shaded}
+
+\part[3] Now that we have shown that each term in the summation of the MSE is a convex function, one might wonder if the entire summation is convex, given that it is
+a sum of convex functions. 
+\vspace*{1em}
+
+Let's look at the formal definition of a \textbf{convex function}.  Algebraically speaking, a function $g(\theta)$ is convex if for any two points $(\theta_i, g(\theta_i))$ and $(\theta_j, g(\theta_j))$ on the function,
+    \begin{align*}
+        g(c\times\theta_i + (1-c)\times\theta_j) \le c\times g(\theta_i) + (1-c)\times g(\theta_j)
+    \end{align*}
+for any real constant $0 \le c \le 1$.
+\vspace*{1em}
+    
+Intuitively, the above definition says that, given the plot
+of a convex function $g(\theta)$, if you connect 2 randomly chosen points on the function, the line segment will always lie on or above $g(\theta)$ 
+(try this with the graph of $g(\theta)=\theta^2$).
+\vspace*{1em}
+
+\begin{subparts}
+    \subpart[2] Using the definition above, show that if $g(\theta)$ and $h(\theta)$ are both convex functions, their sum $g(\theta) + h(\theta)$ will also be a convex function.
+    \begin{shaded}
+    \begin{answer}
+
+% YOUR ANSWER HERE %
+
+    \end{answer}
+    \end{shaded}
+    \vspace*{1em}
+
+    \subpart[1] Based on what you have shown in the previous part, explain intuitively why a (finite) sum of $n$ convex functions is still a convex function when $n > 2$.
+    \begin{shaded}
+    \begin{answer}
+
+% YOUR ANSWER HERE %
+
+    \end{answer}
+    \end{shaded}
+\end{subparts}
+
+\part[2] Finally, explain why in our case that, when we solve for the critical point of the MSE by taking the gradient with respect to the parameter and setting the expression to $0$, it is guranteed that the solution we find will minimize the MSE.
+
+   \begin{shaded}
+    \begin{answer}
+
+% YOUR ANSWER HERE %
+
+    \end{answer}
+    \end{shaded}
+
+\end{parts}
+
+\vspace*{1em}
+\small{
+Closing note: In this question, we have discussed only the simple linear model with no constant term---a single-variable function. However, the above properties extend more generally to all multivariable linear regression models; this proof is beyond the scope of this course and is left to a future you.
+}
+\end{questions}
+
+\vfill
+\begin{center}
+    \textbf{
+    Congratulations! You have finished Homework \homework{}!
+    }
+\end{center}
+\end{document}
+
